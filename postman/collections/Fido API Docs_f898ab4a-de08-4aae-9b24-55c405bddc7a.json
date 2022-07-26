@@ -1,0 +1,1877 @@
+{
+	"info": {
+		"_postman_id": "6c38e5e7-d235-4963-82fa-c358fa2b69a2",
+		"name": "Fido API Docs",
+		"description": "\n\n<table>\n    <tr>\n        <td width=\"75\"><img src=\"https://www.fido.tech/wp-content/uploads/2021/01/image.png\" alt=\"FIDO\" /> </td>\n        <td valign=\"middle\"> <h2>FIDO API let you access to database information</h2></td>\n    </tr>\n</table>\n\n<!-- <table>\n    <thead>\n        <tr>\n            <th>End Point</th>\n            <th>Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr style=\"background-color:teal\">\n            <td>Users</td>\n            <td>Get users information</td>\n        </tr>\n        <tr style=\"background-color:coral\">\n            <td>LeakAlarm</td>\n            <td>Get Leak Alarms information</td>\n        </tr>\n        <tr style=\"background-color:teal\">\n            <td>Devices/Bugs</td>\n            <td>Get Bugs information</td>\n        </tr>\n        <tr style=\"background-color:coral;\">\n            <td>AI</td>\n            <td>AI prediction</td>\n        </tr>\n    </tbody>\n</table>   -->\n\n\nContact Support:\n Name: Fido Tech\n Email: sales@fido.tech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "Get Users",
+							"id": "4eb5ad17-588e-438a-8696-223339453b07",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "<Bearer Token>",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/users/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										""
+									]
+								},
+								"description": "# Returns all the mobile app users for the organization.\n\n## Returns\n ********* \n**List[Users]**"
+							},
+							"response": [
+								{
+									"id": "332edb16-eacc-4643-bc75-87bab7500358",
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/users/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"users",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n  {\n    \"user_id\": \"12345\",\n    \"first_name\": \"Stanislaw\",\n    \"surname\": \"Lem\",\n    \"company\": \"MartianWaterCompany\",\n    \"email\": \"slem@martianwater.mart\",\n    \"LOM\": \"\",\n    \"phone\": \"0123456789\"\n  },\n  {\n    \"user_id\": \"12345\",\n    \"first_name\": \"Stanislaw\",\n    \"surname\": \"Lem\",\n    \"company\": \"MartianWaterCompany\",\n    \"email\": \"slem@martianwater.mart\",\n    \"LOM\": \"\",\n    \"phone\": \"0123456789\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "Create User",
+							"id": "5a5580c9-231b-40e1-b7a7-1a7d43bdc85c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "<Bearer Token>",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"amet consequat aute\",\n  \"surname\": \"qui irure\",\n  \"email\": \"M9gLoec2csoX@idITtiLWaWxKolVxTOhebUE.jy\",\n  \"LOM\": \"ipsum est\",\n  \"phone\": \"laboris irure in cupidatat\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/users/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										""
+									]
+								},
+								"description": "# Create a new user for the current organization.\n\n## **We need to pass the user data in the request body.**\n\n## Returns\n ********* \n**Created**"
+							},
+							"response": [
+								{
+									"id": "39bf83af-2136-4af1-ba6b-02449647822d",
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"amet consequat aute\",\n  \"surname\": \"qui irure\",\n  \"email\": \"M9gLoec2csoX@idITtiLWaWxKolVxTOhebUE.jy\",\n  \"LOM\": \"ipsum est\",\n  \"phone\": \"laboris irure in cupidatat\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/users/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"users",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{}"
+								},
+								{
+									"id": "18f2f6a3-a5e1-4422-ae91-297363becd8b",
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"amet consequat aute\",\n  \"surname\": \"qui irure\",\n  \"email\": \"M9gLoec2csoX@idITtiLWaWxKolVxTOhebUE.jy\",\n  \"LOM\": \"ipsum est\",\n  \"phone\": \"laboris irure in cupidatat\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/users/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"users",
+												""
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"elit sunt pariatur sint\",\n        \"in sit\"\n      ],\n      \"msg\": \"nostrud non deserunt mollit\",\n      \"type\": \"sunt enim fugiat mollit\"\n    },\n    {\n      \"loc\": [\n        \"labore aliquip\",\n        \"ut culpa ipsum officia\"\n      ],\n      \"msg\": \"consectetur Lorem eiusmod culpa commodo\",\n      \"type\": \"in volupta\"\n    }\n  ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Update User",
+							"id": "adfa00d8-79c1-4115-842c-7b7fdc4d2317",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "<Bearer Token>",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\": \"deserunt sit et\",\n  \"surname\": \"mollit sit sint commodo\",\n  \"email\": \"8mDat@ihVc.lge\",\n  \"LOM\": \"in sed\",\n  \"phone\": \"occaecat ut sed Duis\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/users/:user_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										":user_id"
+									],
+									"variable": [
+										{
+											"id": "16243266-552f-4da3-9f90-0ab07de64698",
+											"key": "user_id",
+											"value": "do pariatur",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "# Update an user for the current organization.\n\n## **We need to pass the user data in the request body.**\n\n## Parameter\n ********* \n**user_id**: str  \n&emsp;User id for the user to be modified\n\n## Returns\n ********* \n**Modified User**"
+							},
+							"response": [
+								{
+									"id": "15f3e5ec-4bf9-473a-9076-0c22989a7c55",
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"first_name\": \"deserunt sit et\",\n  \"surname\": \"mollit sit sint commodo\",\n  \"email\": \"8mDat@ihVc.lge\",\n  \"LOM\": \"in sed\",\n  \"phone\": \"occaecat ut sed Duis\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/users/:user_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"users",
+												":user_id"
+											],
+											"variable": [
+												{
+													"key": "user_id",
+													"value": "do pariatur",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"user_id\": \"12345\",\n  \"first_name\": \"Stanislaw\",\n  \"surname\": \"Lem\",\n  \"company\": \"MartianWaterCompany\",\n  \"email\": \"slem@martianwater.mart\",\n  \"LOM\": \"\",\n  \"phone\": \"0123456789\"\n}"
+								},
+								{
+									"id": "0a96ded1-5a1a-4da6-9d44-82091605a3a6",
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"first_name\": \"deserunt sit et\",\n  \"surname\": \"mollit sit sint commodo\",\n  \"email\": \"8mDat@ihVc.lge\",\n  \"LOM\": \"in sed\",\n  \"phone\": \"occaecat ut sed Duis\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/users/:user_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"users",
+												":user_id"
+											],
+											"variable": [
+												{
+													"key": "user_id",
+													"value": "do pariatur",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					],
+					"id": "e23272af-f6cd-4c75-aa00-9208510632f6"
+				},
+				{
+					"name": "devices/bugs",
+					"item": [
+						{
+							"name": "last seen",
+							"item": [
+								{
+									"name": "Bugs Last Seen",
+									"id": "73b9c631-4267-418e-92ec-336cbf0d12ed",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/devices/bugs/last_seen/?date_from=2022-06-26&date_to=2022-07-26",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"devices",
+												"bugs",
+												"last_seen",
+												""
+											],
+											"query": [
+												{
+													"key": "date_from",
+													"value": "2022-06-26",
+													"description": "yyyy-mm-dd"
+												},
+												{
+													"key": "date_to",
+													"value": "2022-07-26",
+													"description": "yyyy-mm-dd"
+												}
+											]
+										},
+										"description": "# Returns the last seen information for a given dates and for a given company.\n\n## Parameter\n ******** \n**date_from**: datetime.date    \n&emsp;First day included\n\n**date_to**: datetime.date   \n&emsp;Last day included\n\n## Returns\n ******** \n**List[BugActivity]**"
+									},
+									"response": [
+										{
+											"id": "d58a2cf9-4c3c-4857-b9fa-ee5aa55b3e86",
+											"name": "Successful Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/last_seen/?date_from=2022-06-26&date_to=2022-07-26",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"last_seen",
+														""
+													],
+													"query": [
+														{
+															"key": "date_from",
+															"value": "2022-06-26"
+														},
+														{
+															"key": "date_to",
+															"value": "2022-07-26"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "[\n  {\n    \"bug_name\": \"bug:name\",\n    \"id\": 0,\n    \"scan_id\": 0,\n    \"user_id\": \"x6xx\",\n    \"device_id\": \"AA:AA:AA:AA:AA\",\n    \"latitude\": 55.333443,\n    \"longitude\": -20.4567,\n    \"self_test\": 0,\n    \"battery_voltage\": 3.5,\n    \"logger_status\": 0,\n    \"address\": \"111 Main Road\",\n    \"postcode\": \"AA34 BBB\",\n    \"country_code\": \"UK\",\n    \"hardware_code\": \"1.1.1\",\n    \"app_version\": \"1.1.1\",\n    \"phone_brand\": \"xphone\",\n    \"phone_model\": \"xphone 00\",\n    \"phone_platform\": \"xos\",\n    \"who\": \"Forename Surname\",\n    \"company\": \"Company 1\",\n    \"date\": \"2022-06-10\",\n    \"local_time\": \"2022-06-10 01:00:00\"\n  },\n  {\n    \"bug_name\": \"bug:name\",\n    \"id\": 0,\n    \"scan_id\": 0,\n    \"user_id\": \"x6xx\",\n    \"device_id\": \"AA:AA:AA:AA:AA\",\n    \"latitude\": 55.333443,\n    \"longitude\": -20.4567,\n    \"self_test\": 0,\n    \"battery_voltage\": 3.5,\n    \"logger_status\": 0,\n    \"address\": \"111 Main Road\",\n    \"postcode\": \"AA34 BBB\",\n    \"country_code\": \"UK\",\n    \"hardware_code\": \"1.1.1\",\n    \"app_version\": \"1.1.1\",\n    \"phone_brand\": \"xphone\",\n    \"phone_model\": \"xphone 00\",\n    \"phone_platform\": \"xos\",\n    \"who\": \"Forename Surname\",\n    \"company\": \"Company 1\",\n    \"date\": \"2022-06-10\",\n    \"local_time\": \"2022-06-10 01:00:00\"\n  }\n]"
+										},
+										{
+											"id": "3fe98090-8700-45b3-b93a-017d62bbe1fa",
+											"name": "Validation Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/last_seen/?date_from=2022-06-26&date_to=2022-07-26",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"last_seen",
+														""
+													],
+													"query": [
+														{
+															"key": "date_from",
+															"value": "2022-06-26"
+														},
+														{
+															"key": "date_to",
+															"value": "2022-07-26"
+														}
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+										}
+									]
+								},
+								{
+									"name": "Bugid Last Seen",
+									"id": "bf984511-9d1a-4e1d-a248-98cc09f1102a",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/devices/bugs/last_seen/:device_id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"devices",
+												"bugs",
+												"last_seen",
+												":device_id"
+											],
+											"variable": [
+												{
+													"id": "fa4d40eb-144f-449a-aaa3-d03c80f0a25c",
+													"key": "device_id",
+													"value": "Duis",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "# Returns the last seen information for a given device for the company.\n\n## Parameter\n ********* \n**device_id**: str  \n&emsp;Device ID\n\n## Returns\n ********* \n**BugLastSeen**"
+									},
+									"response": [
+										{
+											"id": "cf4b75c9-fb3d-4f2c-a1a2-49bd0ed90a5c",
+											"name": "Successful Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/last_seen/:device_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"last_seen",
+														":device_id"
+													],
+													"variable": [
+														{
+															"key": "device_id",
+															"value": "Duis",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n  \"bug_name\": \"bug:name\",\n  \"id\": 0,\n  \"scan_id\": 0,\n  \"user_id\": \"x6xx\",\n  \"device_id\": \"AA:AA:AA:AA:AA\",\n  \"latitude\": 55.333443,\n  \"longitude\": -20.4567,\n  \"self_test\": 0,\n  \"battery_voltage\": 3.5,\n  \"logger_status\": 0,\n  \"address\": \"111 Main Road\",\n  \"postcode\": \"AA34 BBB\",\n  \"country_code\": \"UK\",\n  \"hardware_code\": \"1.1.1\",\n  \"app_version\": \"1.1.1\",\n  \"phone_brand\": \"xphone\",\n  \"phone_model\": \"xphone 00\",\n  \"phone_platform\": \"xos\",\n  \"who\": \"Forename Surname\",\n  \"company\": \"Company 1\",\n  \"date\": \"2022-06-10\",\n  \"local_time\": \"2022-06-10 01:00:00\"\n}"
+										},
+										{
+											"id": "d9cac30b-93e7-4f1e-8ec8-d19f766e99fb",
+											"name": "Validation Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/last_seen/:device_id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"last_seen",
+														":device_id"
+													],
+													"variable": [
+														{
+															"key": "device_id",
+															"value": "Duis",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+										}
+									]
+								}
+							],
+							"id": "b5335e54-307d-4d73-b4c4-2afd63f77de4"
+						},
+						{
+							"name": "recordings",
+							"item": [
+								{
+									"name": "{recording id}",
+									"item": [
+										{
+											"name": "Download Audio",
+											"id": "6814e437-c67d-4f3a-8015-3a29fdb24760",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "<Bearer Token>",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/audio/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"recordings",
+														":recording_id",
+														"audio",
+														""
+													],
+													"variable": [
+														{
+															"id": "e4b8d13e-9d09-42cd-883c-9d6b316dfc97",
+															"key": "recording_id",
+															"value": "-8749616",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "# Download audio recording for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**FileResponse**    \n&emsp;Returning the link to download the audio file"
+											},
+											"response": [
+												{
+													"id": "a035e62c-4faf-46eb-ad71-209277a6e3e2",
+													"name": "Successful Response",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/audio/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"audio",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-8749616",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{}"
+												},
+												{
+													"id": "a872718f-98e7-4b16-8735-f9da69712762",
+													"name": "Validation Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/audio/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"audio",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-8749616",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+												}
+											]
+										},
+										{
+											"name": "Download Stft",
+											"id": "2b220006-ef95-47e3-94d7-75b2a4ac9295",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "<Bearer Token>",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/stft/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"recordings",
+														":recording_id",
+														"stft",
+														""
+													],
+													"variable": [
+														{
+															"id": "441906e4-85c8-4978-ac5b-3df953dcee44",
+															"key": "recording_id",
+															"value": "-8749616",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "# Download Short-Time Fourier Transformation for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**FileResponse**    \n&emsp;Returning the link to download the stft file"
+											},
+											"response": [
+												{
+													"id": "a10ce215-a650-4624-9c0c-f29c757dbcbc",
+													"name": "Successful Response",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/stft/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"stft",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-8749616",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{}"
+												},
+												{
+													"id": "31a828ce-dbff-4e5d-93f2-f3cb9453e8fe",
+													"name": "Validation Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/stft/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"stft",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-8749616",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+												}
+											]
+										},
+										{
+											"name": "Download Psd",
+											"id": "15b8edcf-e166-4221-a0da-60899eb356b4",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "<Bearer Token>",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/psd/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"recordings",
+														":recording_id",
+														"psd",
+														""
+													],
+													"variable": [
+														{
+															"id": "25416740-e2a8-4367-b697-7be8d19b978a",
+															"key": "recording_id",
+															"value": "-8749616",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "# Download Power Spectral Density for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**FileResponse**    \n&emsp;Returning the link to download the psd file"
+											},
+											"response": [
+												{
+													"id": "35576c26-b8b1-4a43-a4de-43c75bff648b",
+													"name": "Successful Response",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/psd/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"psd",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-8749616",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{}"
+												},
+												{
+													"id": "9e60b82d-22c4-4b1c-8de3-d7164d11d3c7",
+													"name": "Validation Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/psd/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"psd",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-8749616",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+												}
+											]
+										},
+										{
+											"name": "Download All",
+											"id": "3f23cad1-7a44-4634-9c3c-c427490794a9",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "<Bearer Token>",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/all/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"recordings",
+														":recording_id",
+														"all",
+														""
+													],
+													"variable": [
+														{
+															"id": "20c052e7-3d15-4b32-af60-b1c9591503cd",
+															"key": "recording_id",
+															"value": "-16249518",
+															"description": "(Required) "
+														}
+													]
+												},
+												"description": "# Download Short-Time Fourier Transformation(stft .png), Power Spectral Density (psd .png)     \n# and Sound file (.wav) for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**StreamingResponse**    \n&emsp;Returning the Zip file with the three files included"
+											},
+											"response": [
+												{
+													"id": "bca91829-4e91-471f-ae8d-5afab105f47c",
+													"name": "Successful Response",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/all/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"all",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-16249518",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{}"
+												},
+												{
+													"id": "1b22ccfb-a864-4825-b5fe-f416af621ef6",
+													"name": "Validation Error",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/v1/devices/bugs/recordings/:recording_id/all/",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"v1",
+																"devices",
+																"bugs",
+																"recordings",
+																":recording_id",
+																"all",
+																""
+															],
+															"variable": [
+																{
+																	"key": "recording_id",
+																	"value": "-16249518",
+																	"description": "(Required) "
+																}
+															]
+														}
+													},
+													"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+													"code": 422,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"responseTime": null,
+													"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+												}
+											]
+										}
+									],
+									"id": "0d7411b5-beaa-4a89-b8ec-e6d4c192a80d"
+								},
+								{
+									"name": "List Of Recordings",
+									"id": "42865fa7-33aa-4a43-8783-78432253ab91",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/devices/bugs/recordings/list?date_from=2022-06-26&date_to=2022-07-26",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"devices",
+												"bugs",
+												"recordings",
+												"list"
+											],
+											"query": [
+												{
+													"key": "date_from",
+													"value": "2022-06-26",
+													"description": "yyyy-mm-dd"
+												},
+												{
+													"key": "date_to",
+													"value": "2022-07-26",
+													"description": "yyyy-mm-dd"
+												}
+											]
+										},
+										"description": "# Returns the list of Recordings for the company.\n\n## Parameters\n ******* \n**session**: Session    \n&emsp;DB session\n\n**date_from**: datetime.date             \n&emsp;First day included\n\n**date_to**: datetime.date             \n&emsp;Last day included\n\n## Returns\n -------- \nList[BugRecording]    "
+									},
+									"response": [
+										{
+											"id": "eb08d088-d2ed-453e-b2c1-d37e89256544",
+											"name": "Successful Response",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/recordings/list?date_from=2022-06-26&date_to=2022-07-26",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"recordings",
+														"list"
+													],
+													"query": [
+														{
+															"key": "date_from",
+															"value": "2022-06-26"
+														},
+														{
+															"key": "date_to",
+															"value": "2022-07-26"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "[\n  {\n    \"device_id\": \"XX:XX:XX:XX:XX\",\n    \"sample_rate\": 0,\n    \"address\": \"1, Trafalgar Square\",\n    \"latitude\": 0,\n    \"longitude\": 0,\n    \"country_code\": \"gb\",\n    \"what3words\": \"word1.word2.word3\",\n    \"timestmp\": \"2021-09-22 09:21:35\",\n    \"audio_link\": \"https://storage.googleapis.com/ble-recordings/00000/audio_int16.wav\",\n    \"psd_link\": \"https://storage.googleapis.com/ble-recordings/00000/psd.png\",\n    \"stft_link\": \"https://storage.googleapis.com/ble-recordings/00000/stft.png\",\n    \"company\": \"Company name\",\n    \"who\": \"Name Surname\",\n    \"user_id\": \"xxxx\"\n  },\n  {\n    \"device_id\": \"XX:XX:XX:XX:XX\",\n    \"sample_rate\": 0,\n    \"address\": \"1, Trafalgar Square\",\n    \"latitude\": 0,\n    \"longitude\": 0,\n    \"country_code\": \"gb\",\n    \"what3words\": \"word1.word2.word3\",\n    \"timestmp\": \"2021-09-22 09:21:35\",\n    \"audio_link\": \"https://storage.googleapis.com/ble-recordings/00000/audio_int16.wav\",\n    \"psd_link\": \"https://storage.googleapis.com/ble-recordings/00000/psd.png\",\n    \"stft_link\": \"https://storage.googleapis.com/ble-recordings/00000/stft.png\",\n    \"company\": \"Company name\",\n    \"who\": \"Name Surname\",\n    \"user_id\": \"xxxx\"\n  }\n]"
+										},
+										{
+											"id": "c0e64009-9ac7-473f-a152-3b606d183896",
+											"name": "Validation Error",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/devices/bugs/recordings/list?date_from=2022-06-26&date_to=2022-07-26",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"devices",
+														"bugs",
+														"recordings",
+														"list"
+													],
+													"query": [
+														{
+															"key": "date_from",
+															"value": "2022-06-26"
+														},
+														{
+															"key": "date_to",
+															"value": "2022-07-26"
+														}
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+										}
+									]
+								}
+							],
+							"id": "4949114a-c9b4-4366-bdb8-174751e315a3"
+						},
+						{
+							"name": "Bugs Activity",
+							"id": "6afddffe-250a-487c-92c9-9a63507cbe39",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "<Bearer Token>",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/devices/bugs/activity/?date_from=2022-06-26&date_to=2022-07-26",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"devices",
+										"bugs",
+										"activity",
+										""
+									],
+									"query": [
+										{
+											"key": "date_from",
+											"value": "2022-06-26",
+											"description": "yyyy-mm-dd"
+										},
+										{
+											"key": "date_to",
+											"value": "2022-07-26",
+											"description": "yyyy-mm-dd"
+										}
+									]
+								},
+								"description": "# Returns the bug activity for the company.\n\n## Parameter\n ******** \n**date_from**: datetime.date   \n&emsp;First day included\n\n**date_to**: datetime.date   \n&emsp;Last day included\n\n## Returns\n ******** \n**List[BugActivity]**    "
+							},
+							"response": [
+								{
+									"id": "7fa2aea1-582a-4115-8413-cf6bd70d5db5",
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/devices/bugs/activity/?date_from=2022-06-26&date_to=2022-07-26",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"devices",
+												"bugs",
+												"activity",
+												""
+											],
+											"query": [
+												{
+													"key": "date_from",
+													"value": "2022-06-26"
+												},
+												{
+													"key": "date_to",
+													"value": "2022-07-26"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "[\n  {\n    \"fido_id\": \"nulla Ut incididunt culpa enim\",\n    \"company\": \"sunt laboris Excepteur\",\n    \"who\": \"reprehenderit pariatur Excepteur\",\n    \"event\": \"recording\",\n    \"device_id\": \"id veniam ipsum nisi\",\n    \"user_id\": \"nisi reprehenderit anim\",\n    \"timestmp\": \"1989-07-23T16:27:02.407Z\",\n    \"app_version\": \"i\",\n    \"hardware_version\": \"ullamco sit\",\n    \"latitude\": 13658440.2709734,\n    \"longitude\": 32371619.96260123,\n    \"postcode\": \"Lorem laboris velit\"\n  },\n  {\n    \"fido_id\": \"voluptate non ni\",\n    \"company\": \"est qui\",\n    \"who\": \"dolore laboris incididunt in officia\",\n    \"event\": \"logger\",\n    \"device_id\": \"sit ipsum Duis ex\",\n    \"user_id\": \"qui ea sunt\",\n    \"timestmp\": \"1969-04-27T19:49:54.935Z\",\n    \"app_version\": \"ut\",\n    \"hardware_version\": \"irure Duis minim Ut\",\n    \"latitude\": -96073104.59844522,\n    \"longitude\": -10781780.19086118,\n    \"postcode\": \"sed aliqua ipsum Ut\"\n  }\n]"
+								},
+								{
+									"id": "188c1771-1ed4-48b3-8444-a3c92b228189",
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/devices/bugs/activity/?date_from=2022-06-26&date_to=2022-07-26",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"devices",
+												"bugs",
+												"activity",
+												""
+											],
+											"query": [
+												{
+													"key": "date_from",
+													"value": "2022-06-26"
+												},
+												{
+													"key": "date_to",
+													"value": "2022-07-26"
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					],
+					"id": "51af65f7-bd51-4c4d-a69e-9c925485b5b9"
+				},
+				{
+					"name": "Get Leak Alarm",
+					"id": "ce8fd70d-2413-4f59-a91b-85e6d0158946",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "<Bearer Token>",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/leak_alarms/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"leak_alarms",
+								""
+							]
+						},
+						"description": "# Returns the list of the Leak Alarms. The leak alarm is the function in the FIDOApp \n# enabling water engineers to mark their current location as the point of interest POI.  \n\n## Returns\n ********* \n**List[LeakAlarm]**"
+					},
+					"response": [
+						{
+							"id": "169b88b4-3150-47f6-9ea6-58cc97f4d6d8",
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/leak_alarms/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"leak_alarms",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n  {\n    \"user_id\": \"gtf45r\",\n    \"asset_id\": \"egrty\",\n    \"notes\": \"This is an important note\",\n    \"latitude\": 54.2345,\n    \"longitude\": 18.3423,\n    \"created_at\": \"2021-10-23 13:12:34\",\n    \"address\": \"23 Regent Street, London\",\n    \"postcode\": \"WE12 4FG\",\n    \"company\": \"ACME\",\n    \"who\": \"Damon Hill\"\n  },\n  {\n    \"user_id\": \"gtf45r\",\n    \"asset_id\": \"egrty\",\n    \"notes\": \"This is an important note\",\n    \"latitude\": 54.2345,\n    \"longitude\": 18.3423,\n    \"created_at\": \"2021-10-23 13:12:34\",\n    \"address\": \"23 Regent Street, London\",\n    \"postcode\": \"WE12 4FG\",\n    \"company\": \"ACME\",\n    \"who\": \"Damon Hill\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "Predict",
+					"id": "57b719e8-83fd-42f6-aec3-f7b9817e7b04",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "<Bearer Token>",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"description": "(Required) ",
+									"value": null
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/predict/?sensor=bug",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"predict",
+								""
+							],
+							"query": [
+								{
+									"key": "sensor",
+									"value": "bug"
+								}
+							]
+						},
+						"description": "# AI Prediction for the given file\n\n## Parameters\n ******** \n**file** : UploadFile   \n&emsp;File to upload to do the prediction\n\n**sensor** : SensorType, optional  \n&emsp;Sensor type, by default SensorType.halma\n\n## Returns\n ******* \n**Prediction**  \n&emsp;Prediction Schema"
+					},
+					"response": [
+						{
+							"id": "5d6b1271-0d38-4969-a9fa-760dd9222320",
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"description": "(Required) ",
+											"key": "file",
+											"type": "file"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/predict/?sensor=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"predict",
+										""
+									],
+									"query": [
+										{
+											"key": "sensor",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{}"
+						},
+						{
+							"id": "d208fa73-e5d0-4468-9225-7c2f9ae887f9",
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"description": "(Required) ",
+											"key": "file",
+											"type": "file"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/predict/?sensor=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"predict",
+										""
+									],
+									"query": [
+										{
+											"key": "sensor",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"consequat enim in irure\",\n        \"labore molli\"\n      ],\n      \"msg\": \"nostrud fugiat do minim et\",\n      \"type\": \"amet cupidatat dolor incididunt aliquip\"\n    },\n    {\n      \"loc\": [\n        \"Excepteur in proi\",\n        \"aliqua\"\n      ],\n      \"msg\": \"veniam dolore\",\n      \"type\": \"enim\"\n    }\n  ]\n}"
+						}
+					]
+				}
+			],
+			"id": "8a0f93cf-4632-4600-a860-2020d0e5747f"
+		}
+	],
+	"variable": [
+		{
+			"id": "79dbe856-c67f-4a11-be59-8857a549ede1",
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}

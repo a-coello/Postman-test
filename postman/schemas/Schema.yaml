@@ -1,0 +1,1291 @@
+{
+"openapi": "3.0.2",
+"info": {
+"title": "FIDOAPI",
+"description": "\n\n<table>\n    <tr>\n        <td width=\"75\"><img src=\"https://www.fido.tech/wp-content/uploads/2021/01/image.png\" alt=\"FIDO\" /> </td>\n        <td valign=\"middle\"> <h2>FIDO API let you access to database information</h2></td>\n    </tr>\n</table>\n\n<!-- <table>\n    <thead>\n        <tr>\n            <th>End Point</th>\n            <th>Description</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr style=\"background-color:teal\">\n            <td>Users</td>\n            <td>Get users information</td>\n        </tr>\n        <tr style=\"background-color:coral\">\n            <td>LeakAlarm</td>\n            <td>Get Leak Alarms information</td>\n        </tr>\n        <tr style=\"background-color:teal\">\n            <td>Devices/Bugs</td>\n            <td>Get Bugs information</td>\n        </tr>\n        <tr style=\"background-color:coral;\">\n            <td>AI</td>\n            <td>AI prediction</td>\n        </tr>\n    </tbody>\n</table>   -->\n",
+"contact": {
+"name": "Fido Tech",
+"url": "https://www.fido.tech/",
+"email": "sales@fido.tech"
+},
+"version": "1.0.0",
+"x-logo": {
+"url": "https://irp-cdn.multiscreensite.com/bf5acd06/dms3rep/multi/FIDO+3COL+LOGO+PANTONE.png",
+"backgroundColor": "#f5f5f5"
+}
+},
+"paths": {
+"/v1/users/": {
+"get": {
+"tags": [
+"Users"
+],
+"summary": "Get Users",
+"description": "# Returns all the mobile app users for the organization.\n\n## Returns\n ********* \n**List[Users]**",
+"operationId": "get_users_v1_users__get",
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {
+"title": "Response Get Users V1 Users  Get",
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+},
+"post": {
+"tags": [
+"Users"
+],
+"summary": "Create User",
+"description": "# Create a new user for the current organization.\n\n## **We need to pass the user data in the request body.**\n\n## Returns\n ********* \n**Created**",
+"operationId": "create_user_v1_users__post",
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UserCreate"
+}
+}
+},
+"required": true
+},
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": { }
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/users/{user_id}": {
+"patch": {
+"tags": [
+"Users"
+],
+"summary": "Update User",
+"description": "# Update an user for the current organization.\n\n## **We need to pass the user data in the request body.**\n\n## Parameter\n ********* \n**user_id**: str  \n&emsp;User id for the user to be modified\n\n## Returns\n ********* \n**Modified User**",
+"operationId": "update_user_v1_users__user_id__patch",
+"parameters": [
+{
+"required": true,
+"schema": {
+"title": "User Id",
+"type": "string"
+},
+"name": "user_id",
+"in": "path"
+}
+],
+"requestBody": {
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/UserUpdate"
+}
+}
+},
+"required": true
+},
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/User"
+}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/leak_alarms/": {
+"get": {
+"tags": [
+"LeakAlarms"
+],
+"summary": "Get Leak Alarm",
+"description": "# Returns the list of the Leak Alarms. The leak alarm is the function in the FIDOApp \n# enabling water engineers to mark their current location as the point of interest POI.  \n\n## Returns\n ********* \n**List[LeakAlarm]**",
+"operationId": "get_leak_alarm_v1_leak_alarms__get",
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {
+"title": "Response Get Leak Alarm V1 Leak Alarms  Get",
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/LeakAlarm"
+}
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/activity/": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "Bugs Activity",
+"description": "# Returns the bug activity for the company.\n\n## Parameter\n ******** \n**date_from**: datetime.date   \n&emsp;First day included\n\n**date_to**: datetime.date   \n&emsp;Last day included\n\n## Returns\n ******** \n**List[BugActivity]**    ",
+"operationId": "bugs_activity_v1_devices_bugs_activity__get",
+"parameters": [
+{
+"description": "yyyy-mm-dd",
+"required": false,
+"schema": {
+"title": "Date From",
+"type": "string",
+"description": "yyyy-mm-dd",
+"format": "date",
+"default": "2022-06-26"
+},
+"name": "date_from",
+"in": "query"
+},
+{
+"description": "yyyy-mm-dd",
+"required": false,
+"schema": {
+"title": "Date To",
+"type": "string",
+"description": "yyyy-mm-dd",
+"format": "date",
+"default": "2022-07-26"
+},
+"name": "date_to",
+"in": "query"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {
+"title": "Response Bugs Activity V1 Devices Bugs Activity  Get",
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/BugActivity"
+}
+}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/last_seen/{device_id}": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "Bugid Last Seen",
+"description": "# Returns the last seen information for a given device for the company.\n\n## Parameter\n ********* \n**device_id**: str  \n&emsp;Device ID\n\n## Returns\n ********* \n**BugLastSeen**",
+"operationId": "bugID_last_seen_v1_devices_bugs_last_seen__device_id__get",
+"parameters": [
+{
+"required": true,
+"schema": {
+"title": "Device Id",
+"type": "string"
+},
+"name": "device_id",
+"in": "path"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/BugLastSeen"
+}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/last_seen/": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "Bugs Last Seen",
+"description": "# Returns the last seen information for a given dates and for a given company.\n\n## Parameter\n ******** \n**date_from**: datetime.date    \n&emsp;First day included\n\n**date_to**: datetime.date   \n&emsp;Last day included\n\n## Returns\n ******** \n**List[BugActivity]**",
+"operationId": "bugs_last_seen_v1_devices_bugs_last_seen__get",
+"parameters": [
+{
+"description": "yyyy-mm-dd",
+"required": false,
+"schema": {
+"title": "Date From",
+"type": "string",
+"description": "yyyy-mm-dd",
+"format": "date",
+"default": "2022-06-26"
+},
+"name": "date_from",
+"in": "query"
+},
+{
+"description": "yyyy-mm-dd",
+"required": false,
+"schema": {
+"title": "Date To",
+"type": "string",
+"description": "yyyy-mm-dd",
+"format": "date",
+"default": "2022-07-26"
+},
+"name": "date_to",
+"in": "query"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {
+"title": "Response Bugs Last Seen V1 Devices Bugs Last Seen  Get",
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/BugLastSeen"
+}
+}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/recordings/{recording_id}/audio/": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "Download Audio",
+"description": "# Download audio recording for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**FileResponse**    \n&emsp;Returning the link to download the audio file",
+"operationId": "download_audio_v1_devices_bugs_recordings__recording_id__audio__get",
+"parameters": [
+{
+"required": true,
+"schema": {
+"title": "Recording Id",
+"type": "integer"
+},
+"name": "recording_id",
+"in": "path"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": { }
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/recordings/{recording_id}/stft/": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "Download Stft",
+"description": "# Download Short-Time Fourier Transformation for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**FileResponse**    \n&emsp;Returning the link to download the stft file",
+"operationId": "download_stft_v1_devices_bugs_recordings__recording_id__stft__get",
+"parameters": [
+{
+"required": true,
+"schema": {
+"title": "Recording Id",
+"type": "integer"
+},
+"name": "recording_id",
+"in": "path"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": { }
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/recordings/{recording_id}/psd/": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "Download Psd",
+"description": "# Download Power Spectral Density for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**FileResponse**    \n&emsp;Returning the link to download the psd file",
+"operationId": "download_psd_v1_devices_bugs_recordings__recording_id__psd__get",
+"parameters": [
+{
+"required": true,
+"schema": {
+"title": "Recording Id",
+"type": "integer"
+},
+"name": "recording_id",
+"in": "path"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": { }
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/recordings/{recording_id}/all/": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "Download All",
+"description": "# Download Short-Time Fourier Transformation(stft .png), Power Spectral Density (psd .png)     \n# and Sound file (.wav) for a given recording ID\n\n## Parameters\n ******* \n**recording_id** : int, optional    \n&emsp;The ID of the recording to get\n\n**session** : Session, optional    \n&emsp;Injected session object\n\n## Returns\n ********* \n**StreamingResponse**    \n&emsp;Returning the Zip file with the three files included",
+"operationId": "download_all_v1_devices_bugs_recordings__recording_id__all__get",
+"parameters": [
+{
+"required": true,
+"schema": {
+"title": "The ID of the recording to get",
+"type": "integer"
+},
+"name": "recording_id",
+"in": "path"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": { }
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/devices/bugs/recordings/list": {
+"get": {
+"tags": [
+"Bugs"
+],
+"summary": "List Of Recordings",
+"description": "# Returns the list of Recordings for the company.\n\n## Parameters\n ******* \n**session**: Session    \n&emsp;DB session\n\n**date_from**: datetime.date             \n&emsp;First day included\n\n**date_to**: datetime.date             \n&emsp;Last day included\n\n## Returns\n -------- \nList[BugRecording]    ",
+"operationId": "list_of_recordings_v1_devices_bugs_recordings_list_get",
+"parameters": [
+{
+"description": "yyyy-mm-dd",
+"required": false,
+"schema": {
+"title": "Date From",
+"type": "string",
+"description": "yyyy-mm-dd",
+"format": "date",
+"default": "2022-06-26"
+},
+"name": "date_from",
+"in": "query"
+},
+{
+"description": "yyyy-mm-dd",
+"required": false,
+"schema": {
+"title": "Date To",
+"type": "string",
+"description": "yyyy-mm-dd",
+"format": "date",
+"default": "2022-07-26"
+},
+"name": "date_to",
+"in": "query"
+}
+],
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": {
+"title": "Response List Of Recordings V1 Devices Bugs Recordings List Get",
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/BugRecording"
+}
+}
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+},
+"/v1/predict/": {
+"post": {
+"tags": [
+"AI"
+],
+"summary": "Predict",
+"description": "# AI Prediction for the given file\n\n## Parameters\n ******** \n**file** : UploadFile   \n&emsp;File to upload to do the prediction\n\n**sensor** : SensorType, optional  \n&emsp;Sensor type, by default SensorType.halma\n\n## Returns\n ******* \n**Prediction**  \n&emsp;Prediction Schema",
+"operationId": "predict_v1_predict__post",
+"parameters": [
+{
+"required": false,
+"schema": {
+"allOf": [
+{
+"$ref": "#/components/schemas/SensorType"
+}
+],
+"default": "halma"
+},
+"name": "sensor",
+"in": "query"
+}
+],
+"requestBody": {
+"content": {
+"multipart/form-data": {
+"schema": {
+"$ref": "#/components/schemas/PredictionFromFile"
+}
+}
+},
+"required": true
+},
+"responses": {
+"200": {
+"description": "Successful Response",
+"content": {
+"application/json": {
+"schema": { }
+}
+}
+},
+"422": {
+"description": "Validation Error",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/HTTPValidationError"
+}
+}
+}
+}
+},
+"security": [
+{
+"HTTPBearer": [ ]
+}
+]
+}
+}
+},
+"components": {
+"schemas": {
+"BugActivity": {
+"title": "BugActivity",
+"type": "object",
+"properties": {
+"fido_id": {
+"title": "Fido Id",
+"type": "string"
+},
+"company": {
+"title": "Company",
+"type": "string"
+},
+"who": {
+"title": "Who",
+"type": "string"
+},
+"event": {
+"$ref": "#/components/schemas/Enum"
+},
+"device_id": {
+"title": "Device Id",
+"type": "string"
+},
+"user_id": {
+"title": "User Id",
+"type": "string"
+},
+"timestmp": {
+"title": "Timestmp",
+"type": "string",
+"format": "date-time"
+},
+"app_version": {
+"title": "App Version",
+"type": "string"
+},
+"hardware_version": {
+"title": "Hardware Version",
+"type": "string"
+},
+"latitude": {
+"title": "Latitude",
+"type": "number"
+},
+"longitude": {
+"title": "Longitude",
+"type": "number"
+},
+"postcode": {
+"title": "Postcode",
+"type": "string"
+}
+},
+"description": "SQLModel for bug activity",
+"example": {
+"fido_id": "event_number",
+"company": "Company name",
+"who": "name",
+"event": "event",
+"device_id": "XX:XX:XX:XX:XX",
+"user_id": "xxxx",
+"timestmp": "2021-09-22 09:21:35",
+"app_version": "0.0.0",
+"hardware_version": "0.0.0",
+"latitude": 53.23432,
+"longitude": -12.4372,
+"postcode": "XX20 9XX"
+}
+},
+"BugLastSeen": {
+"title": "BugLastSeen",
+"required": [
+"date",
+"local_time"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "integer"
+},
+"bug_name": {
+"title": "Bug Name",
+"type": "string"
+},
+"scan_id": {
+"title": "Scan Id",
+"type": "integer"
+},
+"user_id": {
+"title": "User Id",
+"type": "string"
+},
+"device_id": {
+"title": "Device Id",
+"type": "string"
+},
+"latitude": {
+"title": "Latitude",
+"type": "number"
+},
+"longitude": {
+"title": "Longitude",
+"type": "number"
+},
+"self_test": {
+"title": "Self Test",
+"type": "integer"
+},
+"battery_voltage": {
+"title": "Battery Voltage",
+"type": "number"
+},
+"logger_status": {
+"title": "Logger Status",
+"type": "integer"
+},
+"address": {
+"title": "Address",
+"type": "string"
+},
+"postcode": {
+"title": "Postcode",
+"type": "string"
+},
+"country_code": {
+"title": "Country Code",
+"type": "string"
+},
+"hardware_code": {
+"title": "Hardware Code",
+"type": "string"
+},
+"app_version": {
+"title": "App Version",
+"type": "string"
+},
+"phone_brand": {
+"title": "Phone Brand",
+"type": "string"
+},
+"phone_model": {
+"title": "Phone Model",
+"type": "string"
+},
+"phone_platform": {
+"title": "Phone Platform",
+"type": "string"
+},
+"who": {
+"title": "Who",
+"type": "string"
+},
+"company": {
+"title": "Company",
+"type": "string"
+},
+"date": {
+"title": "Date",
+"type": "string"
+},
+"local_time": {
+"title": "Local Time",
+"type": "string",
+"format": "date-time"
+}
+},
+"description": "SQLModel for last seen bug",
+"example": {
+"bug_name": "bug:name",
+"id": 0,
+"scan_id": 0,
+"user_id": "x6xx",
+"device_id": "AA:AA:AA:AA:AA",
+"latitude": 55.333443,
+"longitude": -20.4567,
+"self_test": 0,
+"battery_voltage": 3.5,
+"logger_status": 0,
+"address": "111 Main Road",
+"postcode": "AA34 BBB",
+"country_code": "UK",
+"hardware_code": "1.1.1",
+"app_version": "1.1.1",
+"phone_brand": "xphone",
+"phone_model": "xphone 00",
+"phone_platform": "xos",
+"who": "Forename Surname",
+"company": "Company 1",
+"date": "2022-06-10",
+"local_time": "2022-06-10 01:00:00"
+}
+},
+"BugRecording": {
+"title": "BugRecording",
+"required": [
+"timestmp"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "integer"
+},
+"device_id": {
+"title": "Device Id",
+"type": "string"
+},
+"sample_rate": {
+"title": "Sample Rate",
+"type": "integer"
+},
+"address": {
+"title": "Address",
+"type": "string"
+},
+"latitude": {
+"title": "Latitude",
+"type": "number"
+},
+"longitude": {
+"title": "Longitude",
+"type": "number"
+},
+"country_code": {
+"title": "Country Code",
+"type": "string"
+},
+"what3words": {
+"title": "What3Words",
+"type": "string"
+},
+"timestmp": {
+"title": "Timestmp",
+"type": "string",
+"format": "date-time"
+},
+"audio_link": {
+"title": "Audio Link",
+"type": "string"
+},
+"psd_link": {
+"title": "Psd Link",
+"type": "string"
+},
+"stft_link": {
+"title": "Stft Link",
+"type": "string"
+},
+"company": {
+"title": "Company",
+"type": "string"
+},
+"who": {
+"title": "Who",
+"type": "string"
+},
+"user_id": {
+"title": "User Id",
+"type": "string"
+}
+},
+"description": "SQLModel for Bug recordings\n    ",
+"example": {
+"id": "Recording id",
+"device_id": "XX:XX:XX:XX:XX",
+"sample_rate": 0,
+"address": "1, Trafalgar Square",
+"latitude": 0.0,
+"longitude": 0.0,
+"country_code": "gb",
+"what3words": "word1.word2.word3",
+"timestmp": "2021-09-22 09:21:35",
+"audio_link": "https://storage.googleapis.com/ble-recordings/00000/audio_int16.wav",
+"psd_link": "https://storage.googleapis.com/ble-recordings/00000/psd.png",
+"stft_link": "https://storage.googleapis.com/ble-recordings/00000/stft.png",
+"company": "Company name",
+"who": "Name Surname",
+"user_id": "xxxx"
+}
+},
+"Enum": {
+"title": "Enum",
+"enum": [
+"correlation",
+"dig_direction",
+"logger",
+"recording",
+"scan"
+],
+"type": "string",
+"description": "An enumeration."
+},
+"HTTPValidationError": {
+"title": "HTTPValidationError",
+"type": "object",
+"properties": {
+"detail": {
+"title": "Detail",
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ValidationError"
+}
+}
+}
+},
+"LeakAlarm": {
+"title": "LeakAlarm",
+"required": [
+"user_id",
+"latitude",
+"longitude",
+"created_at",
+"address",
+"postcode",
+"company",
+"who"
+],
+"type": "object",
+"properties": {
+"id": {
+"title": "Id",
+"type": "integer"
+},
+"user_id": {
+"title": "User Id",
+"type": "string"
+},
+"asset_id": {
+"title": "Asset Id",
+"type": "string"
+},
+"notes": {
+"title": "Notes",
+"type": "string"
+},
+"latitude": {
+"title": "Latitude",
+"type": "number"
+},
+"longitude": {
+"title": "Longitude",
+"type": "number"
+},
+"created_at": {
+"title": "Created At",
+"type": "string",
+"format": "date-time"
+},
+"address": {
+"title": "Address",
+"type": "string"
+},
+"postcode": {
+"title": "Postcode",
+"type": "string"
+},
+"company": {
+"title": "Company",
+"type": "string"
+},
+"who": {
+"title": "Who",
+"type": "string"
+}
+},
+"description": "SQLModel for leak alarms",
+"example": {
+"user_id": "gtf45r",
+"asset_id": "egrty",
+"notes": "This is an important note",
+"latitude": 54.2345,
+"longitude": 18.3423,
+"created_at": "2021-10-23 13:12:34",
+"address": "23 Regent Street, London",
+"postcode": "WE12 4FG",
+"company": "ACME",
+"who": "Damon Hill"
+}
+},
+"PredictionFromFile": {
+"title": "PredictionFromFile",
+"required": [
+"file"
+],
+"type": "object",
+"properties": {
+"file": {
+"title": "File",
+"type": "string",
+"format": "binary"
+}
+}
+},
+"SensorType": {
+"title": "SensorType",
+"enum": [
+"halma",
+"bug"
+],
+"type": "string",
+"description": "An enumeration."
+},
+"User": {
+"title": "User",
+"required": [
+"user_id",
+"first_name",
+"surname",
+"email",
+"company"
+],
+"type": "object",
+"properties": {
+"user_id": {
+"title": "User Id",
+"type": "string"
+},
+"first_name": {
+"title": "First Name",
+"type": "string"
+},
+"surname": {
+"title": "Surname",
+"type": "string"
+},
+"email": {
+"title": "Email",
+"type": "string",
+"format": "email"
+},
+"LOM": {
+"title": "Lom",
+"type": "string"
+},
+"company": {
+"title": "Company",
+"type": "string"
+},
+"phone": {
+"title": "Phone",
+"type": "string"
+},
+"id": {
+"title": "Id",
+"type": "integer"
+}
+},
+"description": "SQLModel for Users",
+"example": {
+"id": "3145",
+"user_id": "12345",
+"first_name": "Stanislaw",
+"surname": "Lem",
+"company": "MartianWaterCompany",
+"email": "slem@martianwater.mart",
+"LOM": "",
+"phone": "0123456789"
+}
+},
+"UserCreate": {
+"title": "UserCreate",
+"type": "object",
+"properties": {
+"name": {
+"title": "Name",
+"type": "string"
+},
+"surname": {
+"title": "Surname",
+"type": "string"
+},
+"email": {
+"title": "Email",
+"type": "string",
+"format": "email"
+},
+"LOM": {
+"title": "Lom",
+"type": "string"
+},
+"phone": {
+"title": "Phone",
+"type": "string"
+}
+}
+},
+"UserUpdate": {
+"title": "UserUpdate",
+"type": "object",
+"properties": {
+"first_name": {
+"title": "First Name",
+"type": "string"
+},
+"surname": {
+"title": "Surname",
+"type": "string"
+},
+"email": {
+"title": "Email",
+"type": "string",
+"format": "email"
+},
+"LOM": {
+"title": "Lom",
+"type": "string"
+},
+"phone": {
+"title": "Phone",
+"type": "string"
+}
+}
+},
+"ValidationError": {
+"title": "ValidationError",
+"required": [
+"loc",
+"msg",
+"type"
+],
+"type": "object",
+"properties": {
+"loc": {
+"title": "Location",
+"type": "array",
+"items": {
+"anyOf": [
+{
+"type": "string"
+},
+{
+"type": "integer"
+}
+]
+}
+},
+"msg": {
+"title": "Message",
+"type": "string"
+},
+"type": {
+"title": "Error Type",
+"type": "string"
+}
+}
+}
+},
+"securitySchemes": {
+"HTTPBearer": {
+"type": "http",
+"scheme": "bearer"
+}
+}
+},
+"x-tagGroups": [
+{
+"name": "AI",
+"tags": [
+"AI"
+]
+},
+{
+"name": "Devices",
+"tags": [
+"Bugs",
+"Relay"
+]
+},
+{
+"name": "Leak Alarms",
+"tags": [
+"LeakAlarms"
+]
+},
+{
+"name": "Reports",
+"tags": [ ]
+},
+{
+"name": "Users",
+"tags": [
+"Users"
+]
+}
+],
+"tags": [
+{
+"name": "AI",
+"description": "AI prediction"
+},
+{
+"name": "Users",
+"description": "Operations with users"
+},
+{
+"name": "LeakAlarms",
+"description": "Get Leak alarms",
+"externalDocs": {
+"description": "Leak alarms external doc",
+"url": "https://www.fido.tech/"
+}
+},
+{
+"name": "Bugs",
+"description": "Operations with bug devices"
+}
+]
+}
