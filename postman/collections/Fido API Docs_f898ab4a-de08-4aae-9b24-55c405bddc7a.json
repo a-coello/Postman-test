@@ -14,21 +14,25 @@
 					"item": [
 						{
 							"name": "Get Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "615b8bf9-c17c-4f1c-adde-d0cf6a9fd0e6",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "4eb5ad17-588e-438a-8696-223339453b07",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "<Bearer Token>",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [
 									{
@@ -91,21 +95,30 @@
 						},
 						{
 							"name": "Create User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7c878ed3-4f9c-4069-ab08-6bb0c6b96ddf",
+										"exec": [
+											"pm.test(\"Status code is 405 - not allowed\", function () {\r",
+											"    pm.response.to.have.status(405);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Mail already exists\", function () {\r",
+											"    var jsonData = pm.response.text();\r",
+											"    pm.expect(jsonData).to.include(\"already exists\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "5a5580c9-231b-40e1-b7a7-1a7d43bdc85c",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "<Bearer Token>",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [
 									{
@@ -119,7 +132,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"amet consequat aute\",\n  \"surname\": \"qui irure\",\n  \"email\": \"M9gLoec2csoX@idITtiLWaWxKolVxTOhebUE.jy\",\n  \"LOM\": \"ipsum est\",\n  \"phone\": \"laboris irure in cupidatat\"\n}",
+									"raw": "{\"name\": \"New\", \"surname\": \"user\", \"email\": \"alik69@msn.com\", \"LOM\": \"\", \"phone\": \"99999999999\"}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -231,26 +244,129 @@
 									"cookie": [],
 									"responseTime": null,
 									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"elit sunt pariatur sint\",\n        \"in sit\"\n      ],\n      \"msg\": \"nostrud non deserunt mollit\",\n      \"type\": \"sunt enim fugiat mollit\"\n    },\n    {\n      \"loc\": [\n        \"labore aliquip\",\n        \"ut culpa ipsum officia\"\n      ],\n      \"msg\": \"consectetur Lorem eiusmod culpa commodo\",\n      \"type\": \"in volupta\"\n    }\n  ]\n}"
+								},
+								{
+									"id": "947f10ca-b68a-4d33-a471-6b9427ad74fd",
+									"name": "Create User",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"amet consequat aute\",\n  \"surname\": \"qui irure\",\n  \"email\": \"acoello@fido.tech\",\n  \"LOM\": \"ipsum est\",\n  \"phone\": \"laboris irure in cupidatat\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/v1/users/",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"v1",
+												"users",
+												""
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": null,
+									"cookie": [],
+									"responseTime": null,
+									"body": "\t{}"
 								}
 							]
 						},
 						{
 							"name": "Update User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c65f28e3-79fb-43d8-a766-27cddf5ce30e",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "58bb0798-576b-4688-ab1a-22f44ee33d87",
+										"exec": [
+											"// pm.test(\"Status code is 401 - expired key\", function () {\r",
+											"//     pm.sendRequest({\r",
+											"//         url: pm.environment.get('baseUrl')+\"v1/users/\"+pm.environment.get('user_id'),\r",
+											"//         method: 'PATCH',\r",
+											"//         header: {\r",
+											"//             'Content-Type': 'application/json',\r",
+											"//             'Authorization': 'Bearer ' + pm.globals.get('APIkeyExpired')\r",
+											"//         },\r",
+											"//         body: {\r",
+											"//             mode: 'raw',\r",
+											"//             raw: JSON.stringify({\r",
+											"//                 \"first_name\": \"Alex\",\r",
+											"//                 \"surname\": \"Coello\",\r",
+											"//                 \"email\": \"acoello@fido.tech\",\r",
+											"//                 \"LOM\": \"\",\r",
+											"//                 \"phone\": \"07563823044\"})\r",
+											"//         },\r",
+											"//     }, function(err, res) {\r",
+											"//             // pm.expect(err).to.not.be.ok;\r",
+											"//             res.code = 401;\r",
+											"//             pm.expect(res.text()).to.include(\"expired\");\r",
+											"//         }\r",
+											"// )\r",
+											"// });\r",
+											"\r",
+											"// pm.test(\"Status code is 401 - Email already exists\", function () {\r",
+											"//     pm.sendRequest({\r",
+											"//         url: pm.environment.get('baseUrl')+\"v1/users/\" + pm.environment.get('user_id'),\r",
+											"//         method: 'PATCH',\r",
+											"//         header: {\r",
+											"//             'Content-Type': 'application/json',\r",
+											"//             'Authorization': 'Bearer ' + pm.globals.get('APIkey')\r",
+											"//         },\r",
+											"//         body: {\r",
+											"//             mode: 'raw',\r",
+											"//             raw: JSON.stringify({\r",
+											"//                 \"email\": \"alexcoeari73@gmail.com\"})\r",
+											"//         },\r",
+											"//     }, function(err, res) {\r",
+											"//             // pm.expect(err).to.not.be.ok;\r",
+											"//             console.log(res.text());\r",
+											"//             res.code = 401;\r",
+											"//             pm.expect(res.text()).to.include(\"already in the DB\");\r",
+											"//         }\r",
+											"// )\r",
+											"// });"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "adfa00d8-79c1-4115-842c-7b7fdc4d2317",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "<Bearer Token>",
-											"type": "string"
-										}
-									]
-								},
 								"method": "PATCH",
 								"header": [
 									{
@@ -264,7 +380,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"first_name\": \"deserunt sit et\",\n  \"surname\": \"mollit sit sint commodo\",\n  \"email\": \"8mDat@ihVc.lge\",\n  \"LOM\": \"in sed\",\n  \"phone\": \"occaecat ut sed Duis\"\n}",
+									"raw": "{\r\n    \"first_name\": \"{{$randomFirstName}}\",\r\n    \"surname\":\"{{$randomLastName}}\",\r\n    \"phone\": \"{{$randomPhoneNumber}}\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -272,22 +388,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/users/:user_id",
+									"raw": "{{baseUrl}}/v1/users/{{user_id}}",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"v1",
 										"users",
-										":user_id"
-									],
-									"variable": [
-										{
-											"id": "16243266-552f-4da3-9f90-0ab07de64698",
-											"key": "user_id",
-											"value": "do pariatur",
-											"description": "(Required) "
-										}
+										"{{user_id}}"
 									]
 								},
 								"description": "# Update an user for the current organization.\n\n## **We need to pass the user data in the request body.**\n\n## Parameter\n ********* \n**user_id**: str  \n&emsp;User id for the user to be modified\n\n## Returns\n ********* \n**Modified User**"
@@ -412,21 +520,25 @@
 							"item": [
 								{
 									"name": "Bugs Last Seen",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e021a6ae-ff52-4336-817a-489c329dbd79",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
 									"id": "73b9c631-4267-418e-92ec-336cbf0d12ed",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "<Bearer Token>",
-													"type": "string"
-												}
-											]
-										},
 										"method": "GET",
 										"header": [
 											{
@@ -564,21 +676,25 @@
 								},
 								{
 									"name": "Bugid Last Seen",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "7efaba8e-5304-452a-9444-1b94b05e3bdd",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
 									"id": "bf984511-9d1a-4e1d-a248-98cc09f1102a",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "<Bearer Token>",
-													"type": "string"
-												}
-											]
-										},
 										"method": "GET",
 										"header": [
 											{
@@ -600,9 +716,8 @@
 											],
 											"variable": [
 												{
-													"id": "fa4d40eb-144f-449a-aaa3-d03c80f0a25c",
 													"key": "device_id",
-													"value": "Duis",
+													"value": "FA:6F:A7:5B:98:33",
 													"description": "(Required) "
 												}
 											]
@@ -715,21 +830,25 @@
 									"item": [
 										{
 											"name": "Download Audio",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "e4823718-9f1e-486f-b8e8-a3ebd57bc72c",
+														"exec": [
+															"pm.test(\"Status code is 200\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
 											"id": "6814e437-c67d-4f3a-8015-3a29fdb24760",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
 											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "<Bearer Token>",
-															"type": "string"
-														}
-													]
-												},
 												"method": "GET",
 												"header": [
 													{
@@ -753,9 +872,8 @@
 													],
 													"variable": [
 														{
-															"id": "e4b8d13e-9d09-42cd-883c-9d6b316dfc97",
 															"key": "recording_id",
-															"value": "-8749616",
+															"value": "38131",
 															"description": "(Required) "
 														}
 													]
@@ -863,21 +981,25 @@
 										},
 										{
 											"name": "Download Stft",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "7e1b3a84-4853-440d-ab2a-b3f49d026222",
+														"exec": [
+															"pm.test(\"Status code is 200\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
 											"id": "2b220006-ef95-47e3-94d7-75b2a4ac9295",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
 											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "<Bearer Token>",
-															"type": "string"
-														}
-													]
-												},
 												"method": "GET",
 												"header": [
 													{
@@ -901,9 +1023,8 @@
 													],
 													"variable": [
 														{
-															"id": "441906e4-85c8-4978-ac5b-3df953dcee44",
 															"key": "recording_id",
-															"value": "-8749616",
+															"value": "38131",
 															"description": "(Required) "
 														}
 													]
@@ -1011,21 +1132,25 @@
 										},
 										{
 											"name": "Download Psd",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "4ae3bf9d-d5af-49d2-b934-3910d5a249cd",
+														"exec": [
+															"pm.test(\"Status code is 200\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
 											"id": "15b8edcf-e166-4221-a0da-60899eb356b4",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
 											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "<Bearer Token>",
-															"type": "string"
-														}
-													]
-												},
 												"method": "GET",
 												"header": [
 													{
@@ -1049,9 +1174,8 @@
 													],
 													"variable": [
 														{
-															"id": "25416740-e2a8-4367-b697-7be8d19b978a",
 															"key": "recording_id",
-															"value": "-8749616",
+															"value": "38131",
 															"description": "(Required) "
 														}
 													]
@@ -1159,21 +1283,25 @@
 										},
 										{
 											"name": "Download All",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "20d74603-7162-4510-9cd6-263170d089bf",
+														"exec": [
+															"pm.test(\"Status code is 200\", function () {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
 											"id": "3f23cad1-7a44-4634-9c3c-c427490794a9",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
 											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "<Bearer Token>",
-															"type": "string"
-														}
-													]
-												},
 												"method": "GET",
 												"header": [
 													{
@@ -1197,9 +1325,8 @@
 													],
 													"variable": [
 														{
-															"id": "20c052e7-3d15-4b32-af60-b1c9591503cd",
 															"key": "recording_id",
-															"value": "-16249518",
+															"value": "38131",
 															"description": "(Required) "
 														}
 													]
@@ -1310,21 +1437,25 @@
 								},
 								{
 									"name": "List Of Recordings",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e03336e4-fa66-4f3b-83dc-8c8ce3fcf72f",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
 									"id": "42865fa7-33aa-4a43-8783-78432253ab91",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "<Bearer Token>",
-													"type": "string"
-												}
-											]
-										},
 										"method": "GET",
 										"header": [
 											{
@@ -1465,21 +1596,25 @@
 						},
 						{
 							"name": "Bugs Activity",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e987b1a3-ca5b-44d4-853b-c98642e1ace3",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "6afddffe-250a-487c-92c9-9a63507cbe39",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "<Bearer Token>",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [
 									{
@@ -1620,21 +1755,100 @@
 				},
 				{
 					"name": "Get Leak Alarm",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e6b2f2c-dfb0-4fac-aab0-18783778cc74",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7b5ab1f5-ac19-4759-8429-c37d43b971a5",
+								"exec": [
+									"// pm.test(\"Status code is 200 - Correct\", function () {\r",
+									"//     pm.sendRequest({\r",
+									"//         header: {\r",
+									"//             'Content-Type': 'application/json',\r",
+									"//             'Authorization': 'Bearer ' + pm.globals.get('APIkey')\r",
+									"//         }\r",
+									"//     }, function(err, res) {\r",
+									"//             // pm.expect(err).to.not.be.ok;\r",
+									"//             console.log(res.text());\r",
+									"//             res.code = 400;\r",
+									"//         }\r",
+									"// )\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Status code is 401 - key expired\", function () {\r",
+									"//     pm.sendRequest({\r",
+									"//         url: pm.environment.get('baseUrl')+\"v1/leak_alarms/\",\r",
+									"//         method: 'GET',\r",
+									"//         header: {\r",
+									"//             'Content-Type': 'application/json',\r",
+									"//             'Authorization': 'Bearer ' + pm.globals.get('APIkeyExpired')\r",
+									"//         }\r",
+									"//     }, function(err, res) {\r",
+									"//             // pm.expect(err).to.not.be.ok;\r",
+									"//             console.log(res.text());\r",
+									"//             res.code = 401;\r",
+									"//             pm.expect(res.text()).to.include(\"API key is expired\");\r",
+									"//         }\r",
+									"// )\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"// pm.test(\"Status code is 401 - wrong key\", function () {\r",
+									"//     pm.sendRequest({\r",
+									"//         url: pm.environment.get('baseUrl')+\"v1/leak_alarms/\",\r",
+									"//         method: 'GET',\r",
+									"//         header: {\r",
+									"//             'Content-Type': 'application/json',\r",
+									"//             'Authorization': 'Bearer wrongkey'\r",
+									"//         }\r",
+									"//     }, function(err, res) {\r",
+									"//             // pm.expect(err).to.not.be.ok;\r",
+									"//             // console.log(res.text());\r",
+									"//             res.code = 401;\r",
+									"//             pm.expect(res.text()).to.include(\"API key is incorrect\");\r",
+									"//         }\r",
+									"// )\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"// pm.test(\"Status code is 401 - missing key\", function () {\r",
+									"//     pm.sendRequest({\r",
+									"//         url: pm.environment.get('baseUrl')+\"v1/leak_alarms/\",\r",
+									"//         method: 'GET',\r",
+									"//         header: {\r",
+									"//             'Content-Type': 'application/json',\r",
+									"//             'Authorization': ''\r",
+									"//         }\r",
+									"//     }, function(err, res) {\r",
+									"//             // pm.expect(err).to.not.be.ok;\r",
+									"//             console.log(res.text());\r",
+									"//             res.code = 401;\r",
+									"//             pm.expect(res.text()).to.include(\"Missing\");\r",
+									"//         }\r",
+									"// )\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "ce8fd70d-2413-4f59-a91b-85e6d0158946",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "<Bearer Token>",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -1697,21 +1911,25 @@
 				},
 				{
 					"name": "Predict",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b3b70b8-aa7f-4d9b-a765-41a334f64d9d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "57b719e8-83fd-42f6-aec3-f7b9817e7b04",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "<Bearer Token>",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -1730,12 +1948,12 @@
 									"key": "file",
 									"type": "file",
 									"description": "(Required) ",
-									"value": null
+									"src": "/C:/Users/Alejandro/OneDrive - FIDO Tech Ltd/PyProjects/FIDOAPI/little_ann/sounds/leaks/Rec40732291.wav"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/predict/?sensor=bug",
+							"raw": "{{baseUrl}}/v1/predict/?sensor=halma",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1747,7 +1965,7 @@
 							"query": [
 								{
 									"key": "sensor",
-									"value": "bug"
+									"value": "halma"
 								}
 							]
 						},
@@ -1866,12 +2084,36 @@
 			"id": "8a0f93cf-4632-4600-a860-2020d0e5747f"
 		}
 	],
-	"variable": [
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{APIkey}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
 		{
-			"id": "79dbe856-c67f-4a11-be59-8857a549ede1",
-			"key": "baseUrl",
-			"value": "/",
-			"type": "string"
+			"listen": "prerequest",
+			"script": {
+				"id": "5d4a2f1f-87b5-4e16-a414-5ed398ab3ebc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e6126fd9-b506-48d2-aad4-44c3a1e6cd79",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
